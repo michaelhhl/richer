@@ -10,6 +10,7 @@ public class EurekaServerApp {
 	
 	
 	public static void main(String[] args) {
+		//add comment
 		SpringApplication.run(EurekaServerApp.class, args);
 	}
 }
