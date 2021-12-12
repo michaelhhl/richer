@@ -17,3 +17,15 @@ cpu > 800 AND (Now - PrevDrop) < 1s AND (MaxPass * MinRT * windows / 1000) < InF
 cpu = cpu(t-1) * decay + cpu(t) * (1 - decay)
 2. 滑动窗口方式采集数据
 使用环形链表（长度100）保存每100毫秒的流量
+
+# Shell使用
+## Project: health check
+1. 双机冷备，一个运行，一个不运行
+2. 通过while true实现对运行服务状态进行间隔5分钟检查并打印log
+3. 原理：通过ps命令检查docker服务是否启动，或调用服务接口
+4. 停掉运行的机器（kill掉进程），启动另外一组，连同nginx一同启动
+
+## 问题：
+1. 服务阻塞，没有取回结果，导致误切换
+2. shell中string变量存储长度越界
+3. shell中主线程不能提前结束，否则取不到分线程的执行结果
